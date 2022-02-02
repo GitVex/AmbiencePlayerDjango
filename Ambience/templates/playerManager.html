@@ -1,0 +1,114 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Ambience Player</title>
+</head>
+
+<!-- Loading Libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- CSS -->
+<link rel="stylesheet" href="https://use.typekit.net/jce0cum.css">
+<link rel="stylesheet" href="{% static 'Ambience/playerManager.css' %}">
+
+<body>
+
+	<div class="libraryBox" id="libraryBox" style="display: none;">
+		<button id="closeLibBtn" class="closeLibBtn" onclick="closeLib()">
+			<svg class="cloesBtn" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+				<path class="cloesBtn" d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/>
+			</svg>
+		</button>
+		<iframe class="lib" id="lib" width="1500" height="800" src="https://miro.com/app/live-embed/o9J_kiyZJm0=/?moveToViewport=-2495,-951,950,459" frameBorder="0" scrolling="no" allowFullScreen></iframe>
+	</div>
+
+
+	<div class="AmbiencePlayerBox">
+		<div class="HeaderBox" id="HeaderBox" style="grid-area: HeaderBox">
+			<h1>Ambience Player</h1>
+			<rect style="grid-area: s2" width="300" height="1"></rect>
+			<button class="addPlayerButton" onclick="addPlayer()">
+				<p>Add Player</p>
+				<svg class="e55aa42d-b85b-40e2-95ba-52275079081a" data-name="PlusSign" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+						<path class="ffc586fc-c668-4291-8e9b-81430c4ef233" d="M428.21,215H292.29a7.29,7.29,0,0,1-7.29-7.29V71.79a7.29,7.29,0,0,0-7.29-7.29H222.29A7.29,7.29,0,0,0,215,71.79V207.71a7.29,7.29,0,0,1-7.29,7.29H71.79a7.29,7.29,0,0,0-7.29,7.29v55.42A7.29,7.29,0,0,0,71.79,285H207.71a7.29,7.29,0,0,1,7.29,7.29V428.21a7.29,7.29,0,0,0,7.29,7.29h55.42a7.29,7.29,0,0,0,7.29-7.29V292.29a7.29,7.29,0,0,1,7.29-7.29H428.21a7.29,7.29,0,0,0,7.29-7.29V222.29A7.29,7.29,0,0,0,428.21,215Z" transform="translate(-6.45 -6.45)"/>
+				</svg>
+			</button>
+			<button class="removePlayerButton" onclick="removePlayer()">
+				<p>Remove Player</p>
+				<svg class="b60aa51c-2c3e-4161-9950-a32939b38f35" data-name="PlusSign" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.9 3">
+					<rect class="e457aa97-ba7b-42cd-b90c-7f0e2c0d7811" width="15.9" height="3" rx="0.3"/>
+				</svg>
+			</button>
+			<button class="openLibButton" onclick="openLib()">
+				<p>Open Library</p>
+				<svg class="b26015b7-2e33-4703-831c-2a76e765856f" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450.1 322.8" >
+					<path class="ec6255a0-8bb8-4953-9675-7300ccf5f92b" d="M466,114.81h-29.7v-10.1A8.6,8.6,0,0,0,430,96a242.75,242.75,0,0,0-62.9-8c-34.9,0-82.4,7.9-117.6,43.6-34.9-36.1-82.8-43.6-117.6-43.6A242.75,242.75,0,0,0,69,96a8.83,8.83,0,0,0-6.3,8.7v10H33.41a8.71,8.71,0,0,0-8.7,8.7V402a8.71,8.71,0,0,0,8.7,8.7,9.16,9.16,0,0,0,4.3-1.1c.9-.4,88.1-48.1,209.9-17.4h2.1a7.39,7.39,0,0,0,2.1,0c122.1-31,209.3,16.7,209.9,17.4a8.48,8.48,0,0,0,8.7,0,8.83,8.83,0,0,0,4.4-7.5V123.61A8.88,8.88,0,0,0,466,114.81ZM42.11,388.21V132.31h20.8v218.8a8.64,8.64,0,0,0,8.6,8.8,6.6,6.6,0,0,0,1.4-.1,382.65,382.65,0,0,1,54.5-4.4,226.86,226.86,0,0,1,74.5,11.3A320,320,0,0,0,42.11,388.21Zm85.4-50.2a377.59,377.59,0,0,0-47.5,3.1V111.61a243.12,243.12,0,0,1,51.7-5.8c32.6,0,77.6,7.5,108.9,42.7l.3,217.3C222.81,354,187.41,338,127.51,338Zm130.9-189.4c31.2-34.9,76.2-42.7,108.9-42.7a243.12,243.12,0,0,1,51.7,5.8v229.5a372.86,372.86,0,0,0-47.2-3.1c-59.5,0-95,16-113.4,27.8Zm198.8,239.6A320.31,320.31,0,0,0,297,366.71a228.64,228.64,0,0,1,74.8-11.3,373.87,373.87,0,0,1,54.9,4.3,8.71,8.71,0,0,0,9.9-7.3,6.6,6.6,0,0,0,.1-1.4V132.31h20.8Z" transform="translate(-24.71 -88.01)"/>
+				</svg>
+			</button>
+			<div class="presetButtonPanel">
+				<button class="savePresetButton">
+					<p>Save Preset</p>
+				</button>
+				<button class="loadPresetButton">
+					<p>Load Preset</p>
+				</button>
+				<button class="browsePresetsButton">
+					<p>Browse Presets</p>
+				</button></div>
+			</div>
+		<div class="LocalMixerBox" id="LocalMixerBox" style="grid-area: LocalMixerBox">
+			<div class="LocalMixerBoxGrid" id="LocalMixerBoxGrid">
+				
+			</div>
+		</div>
+		<div class="GlobalMixer" style="grid-area: GlobalMixer">
+			<button class="crossFadeButton" onclick="crossFade()">
+				<p>Crossfade</p>
+				<svg class="f5cec51e-11c9-41fa-9c3b-292fd05bacff" id="f5cec51e-11c9-41fa-9c3b-292fd05bacff" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427 313.72">
+					<path class="f06c2fea-1780-43b6-8bd0-cf3406385336" d="M420,365.5H354.25a15,15,0,0,1-10.61-4.39L136,153.5H42.25a15,15,0,0,1,0-30h100a15,15,0,0,1,10.61,4.39L360.46,335.5H420a15,15,0,1,1,0,30Z" transform="translate(-27.25 -87.64)"/>
+					<polygon class="f06c2fea-1780-43b6-8bd0-cf3406385336" points="332.96 313.72 383.85 262.86 332.96 212 376.14 212 427 262.86 376.14 313.72 332.96 313.72"/>
+					<path class="e9e0b8dc-fe13-4ac9-a768-aeeb51a77eef" d="M142.25,365.5h-100a15,15,0,0,1,0-30H136l207.6-207.61a15,15,0,0,1,10.61-4.39H420a15,15,0,1,1,0,30h-59.5L152.86,361.11A15,15,0,0,1,142.25,365.5Z" transform="translate(-27.25 -87.64)"/>
+					<polygon class="e9e0b8dc-fe13-4ac9-a768-aeeb51a77eef" points="332.96 0 383.85 50.86 332.96 101.72 376.14 101.72 427 50.86 376.14 0 332.96 0"/>
+				</svg>
+			</button>
+		</div>
+		<div class="miscFeatures" id="miscFeatures" style="grid-area: miscFeatures">
+		</div>
+	</div>
+	<div id="PlayerHolderContainer" class="PlayerHolderContainer" style="display: none;">
+	</div>
+
+	<template id="LocalMixerBoxGridItemTEMPLATE">
+		<div class="LocalMixerBoxGridItem">
+			<div id="LocalPlayer" class="LocalPlayer" ></div>
+			<div id="sliderContainer" class="sliderContainer" onclick="toggleSelection()">
+				<input id="VolumeSlider" class="VolumeSlider" type="range" min="0" max="100" value="50" oninput="updateVolume()" onchange="updateVolume()" orient="vertical">
+			</div>
+			<button id="updateButton" class="updateButton" onclick="updateVideo()"><span class="btncontent">Update</span></button>
+			<div class="VideoIDContainer" style="grid-area: vID">
+				<input id="VideoIDInput" class="VideoIDInput" type="text" style="width: auto" placesholder="Video ID ..."></input>
+			</div>
+			<button id="deleteButton" class="deleteButton" onclick="deletePlayer()">
+				<span class="btncontent">Delete</span>
+			</button>
+			<button id="fadeInButton" class="fadeInButton" onclick="fadeIn()">
+				<span class="btncontent">Fade In</span>
+			</button>
+			<button id="fadeOutButton" class="fadeOutButton" onclick="fadeOut()">
+				<span class="btncontent">Fade Out</span>
+			</button>
+		</div>
+	</template>
+</body>
+
+<!-- JS Loading YT PLayers -->
+<script src="{% static 'Ambience/playerLoader.js' %}"></script>
+
+<!-- JS for Managing Players -->
+<script src="{% static 'Ambience/playerManager.js' %}"></script>
+
+</html>

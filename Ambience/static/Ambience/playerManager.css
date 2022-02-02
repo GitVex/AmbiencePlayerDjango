@@ -1,0 +1,310 @@
+/* GENERAL */
+
+/*
+off-black: #12141A
+off-white: #E6EBE0
+*/
+
+
+html, body {
+	width: auto;
+	height: auto;
+	font-family: bourbon, serif;
+	text-align: center;		
+	background-color: #12141A;
+	}
+
+h1 {
+	letter-spacing: 10px;
+	font-size: 45px;
+	float: left;
+	margin-right: 50px;
+	margin-left: 20px;
+	color: white;
+	}
+
+/* LAYOUT */
+
+.AmbiencePlayerBox {
+	display: grid;
+	grid-template-columns: 67% 33%;
+	grid-template-rows: 10% 45% 45%;
+	grid-template-areas: 
+		"HeaderBox GlobalMixer"
+		"LocalMixerBox LocalMixerBox"
+		"LocalMixerBox LocalMixerBox"
+}
+
+.HeaderBox {
+	grid-area: HeaderBox;
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	grid-template-columns: 30% 20% 10% 10% 10% 20%;
+	grid-template-areas: "s1 s2 s3 s4 s5 s6";
+}
+
+.LocalMixerBox {
+	/*border: 2px solid black;*/
+	grid-area: LocalMixerBox;
+}
+
+.GlobalMixer {
+	/*border: 2px solid black;*/
+	grid-area: GlobalMixer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.miscFeatures {
+	/*border: 2px solid black;*/
+	height: 333px;
+	grid-area: miscFeatures;
+}
+
+/* LOCALMIXER */
+
+.LocalMixerBoxGrid {
+	display: grid;
+	grid-template-columns: 33% 33% 33%;
+	grid-template-rows: 33% 33% 33%;
+	grid-template-areas: 
+		"topleft topmid topright"
+		"midleft midmid midright"
+		"bottomleft bottommid bottomright"
+}
+
+.LocalMixerBoxGridItem {
+	width: 600px;
+	height: 300px;
+
+	display: grid;
+	grid-template-columns: 100px 200px 100px 100px 100px;
+	grid-template-rows: 270px 30px;
+	grid-template-areas:
+		"player player player player volume"
+		"update vID del fIn fOut";
+
+	margin-bottom: 10px;
+	margin-left: 0px;
+	margin-right: 10px;
+	margin-top: 0;
+	padding: 5px;
+	background-color: #181A22;
+	border-radius: 7px;
+	filter: drop-shadow(0px 0px 5px #080E14);
+
+	transition: .2s;
+}
+
+.LocalMixerBoxGridItem:hover {
+	transform: scale(1.01);
+	filter: drop-shadow(0px 0px 7px #99b7d4);
+}
+
+.LocalPlayer {
+	grid-area: player;
+
+	margin: 7px;
+	border-radius: 7px;
+}
+
+/* BUTTONS  */
+
+button {
+	width: fit-content;
+	height: auto;
+	font-family: Arial Black, sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	letter-spacing: 1px;
+
+	color: #E6EBE0;
+	margin: auto;
+	padding: 3px;
+	border-radius: 4px;
+	/*background-color: #E6EBE0;*/
+	background: transparent;
+	border: 3px;
+	border-color: rgba(51, 102, 255, 0.541);
+
+	transition: 0.3s;
+}
+button:hover {
+	transform: scale(0.95);
+	background-color: #08090C;
+}
+
+.btncontent {
+	margin: auto;
+}
+
+.presetButtonPanel {
+	grid-area: s6;
+
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 33% 33% 33%;
+}
+
+.savePresetButton, .loadPresetButton, .browsePresetsButton {
+	justify-self: start;
+}
+
+.addPlayerButton, .removePlayerButton, .openLibButton {
+	grid-area: s3;
+	float: left;
+
+	display: grid;
+	justify-content: center;
+	grid-template-rows: 50px 100px;
+}
+
+.removePlayerButton {
+	grid-area: s4;
+}
+
+.openLibButton {
+	grid-area: s5;
+}
+
+.crossFadeButon {
+	grid-area: GlobalMixer;
+}
+
+
+.e55aa42d-b85b-40e2-95ba-52275079081a, .b26015b7-2e33-4703-831c-2a76e765856f, .b60aa51c-2c3e-4161-9950-a32939b38f35, .f5cec51e-11c9-41fa-9c3b-292fd05bacff {
+	width: 100px;
+	height: auto;
+	display: inline-block;
+	margin: auto;
+}
+
+.e457aa97-ba7b-42cd-b90c-7f0e2c0d7811 /*Plus*/{
+	fill:#cb6565;
+}
+.ffc586fc-c668-4291-8e9b-81430c4ef233 /*Minus*/{
+	fill: #6ba353;
+}
+.ec6255a0-8bb8-4953-9675-7300ccf5f92b /*Lib*/{
+	fill: #f7931e;
+}
+.f06c2fea-1780-43b6-8bd0-cf3406385336 {
+	fill:#d53a3a;
+}
+.e9e0b8dc-fe13-4ac9-a768-aeeb51a77eef {
+	fill:#3b8ad4;
+}
+
+.libraryBox {
+	transition: .5s;
+	opacity: 0;
+	position: absolute;
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background-color: rgba(18, 20, 26, .3);
+}
+.closeLibBtn {
+	position: absolute;
+	z-index: 1001;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	top: 8%;
+	right: 8%;
+	background-color: #E6EBE0;
+	border-radius: 3px;
+}
+.closeBtn {
+	fill: #E6EBE0;
+}
+.closeBtn:hover {
+	fill: transparent;
+}
+
+.lib {
+	border-radius: 20px;
+}
+
+.crossFadeButton {
+	grid-area: misc;
+}
+
+/* LOCAL MIXER BUTTONS */
+
+.updateButton, .fadeInButton, .fadeOutButton, .deleteButton {
+	border: 3px;
+	align-content: center;
+}
+
+.updateButton {
+	grid-area: update;
+}
+
+.fadeInButton {
+	grid-area: fIn;
+}
+
+.fadeOutButton {
+	grid-area: fOut;
+}
+
+.deleteButton {
+	grid-area: del;
+}
+
+.VideoIDContainer {
+	grid-area: vID;
+	display: flex;
+	justify-content: center;
+
+	width: auto;
+}
+
+.VideoIDInput {
+	background: #08090C;
+	border: transparent;
+	color: #E6EBE0;
+	border-radius: 6px;
+
+	transition: 0.3s;
+}
+
+.VideoIDInput:hover, .VideoIDInput:focus {
+	transform: scale(1.2);
+}
+
+
+.sliderContainer {
+	display: flex;
+	justify-content: center;
+	grid-area: volume;
+
+	margin: 7px;
+	background: #2a2e3b;
+	border-radius: 7px;
+	filter: drop-shadow(0px 0px 5px #080e14);
+}
+
+.VolumeSlider {
+	writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    width: 8px;
+    height: 175px;
+    padding: 0 5px;
+	
+	margin: auto;
+}
+
+/* GLOBALMIXER */
+
+/* MISCFEATURES */
