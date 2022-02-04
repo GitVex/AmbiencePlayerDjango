@@ -88,14 +88,14 @@ function deletePlayer() {
 	toRemove.remove();
 }
 
-function openLib() {
-	document.getElementById('libraryBox').style.setProperty('display', 'flex');
-	setTimeout(() => document.getElementById('libraryBox').style.setProperty('opacity', '1'), 5);
+function openPanel(id) {
+	document.getElementById(id).style.setProperty('display', 'flex');
+	setTimeout(() => document.getElementById(id).style.setProperty('opacity', '1'), 5);
 }
 
-function closeLib() {
-	setTimeout(() => document.getElementById('libraryBox').style.setProperty('display', 'none'), 500)
-	document.getElementById('libraryBox').style.setProperty('opacity', '0');
+function closePanel(id) {
+	setTimeout(() => document.getElementById(id).style.setProperty('display', 'none'), 500)
+	document.getElementById(id).style.setProperty('opacity', '0');
 }
 
 function toggleSelection() {

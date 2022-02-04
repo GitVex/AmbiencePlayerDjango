@@ -16,9 +16,8 @@
 <link rel="stylesheet" href="{% static 'Ambience/playerManager.css' %}">
 
 <body>
-
-	<div class="libraryBox" id="libraryBox" style="display: none;">
-		<button id="closeLibBtn" class="closeLibBtn" onclick="closeLib()">
+	<div class="libraryBox" id="libraryBox" style="display: none;" onclick="closePanel('libraryBox')">
+		<button id="closeLibBtn" class="closeBtn" onclick="closePanel('libraryBox')">
 			<svg class="cloesBtn" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
 				<path class="cloesBtn" d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/>
 			</svg>
@@ -26,37 +25,58 @@
 		<iframe class="lib" id="lib" width="1500" height="800" src="https://miro.com/app/live-embed/o9J_kiyZJm0=/?moveToViewport=-2495,-951,950,459" frameBorder="0" scrolling="no" allowFullScreen></iframe>
 	</div>
 
+	<div class="SavePresetContainer" id="SavePresetContainer" style="display: none;">
+		<div class="SavePresetForm">
+			<div class="SavePresetContainerHeadContainer" style="grid-area: head;">
+				<label id="savePresetHead" style="grid-area: head">Create New Preset</label>
+				<hr class="solid"/>
+			</div>
+			<form>
+				<label for="presetTitle" >Preset Title:</label><br>
+				<input type="text" id="presetTitle" name="presetTitle" style="grid-area: title"><br>
+				<div class="viewVideosField" style="grid-area: viewBox">
+
+				</div>
+				<input class="submitBtn" type="submit" value="Create" style="grid-area: submit">
+			</form>
+		</div>
+		<button id="closeSavePresetBtn" class="closeBtn" onclick="closePanel('SavePresetContainer')">
+			<svg class="cloesBtn" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+				<path class="cloesBtn" d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/>
+			</svg>
+		</button>
+	</div>
 
 	<div class="AmbiencePlayerBox">
 		<div class="HeaderBox" id="HeaderBox" style="grid-area: HeaderBox">
 			<h1>Ambience Player</h1>
 			<rect style="grid-area: s2" width="300" height="1"></rect>
-			<button class="addPlayerButton" onclick="addPlayer()">
+			<button class="addPlayerBtn" onclick="addPlayer()">
 				<p>Add Player</p>
 				<svg class="e55aa42d-b85b-40e2-95ba-52275079081a" data-name="PlusSign" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
 						<path class="ffc586fc-c668-4291-8e9b-81430c4ef233" d="M428.21,215H292.29a7.29,7.29,0,0,1-7.29-7.29V71.79a7.29,7.29,0,0,0-7.29-7.29H222.29A7.29,7.29,0,0,0,215,71.79V207.71a7.29,7.29,0,0,1-7.29,7.29H71.79a7.29,7.29,0,0,0-7.29,7.29v55.42A7.29,7.29,0,0,0,71.79,285H207.71a7.29,7.29,0,0,1,7.29,7.29V428.21a7.29,7.29,0,0,0,7.29,7.29h55.42a7.29,7.29,0,0,0,7.29-7.29V292.29a7.29,7.29,0,0,1,7.29-7.29H428.21a7.29,7.29,0,0,0,7.29-7.29V222.29A7.29,7.29,0,0,0,428.21,215Z" transform="translate(-6.45 -6.45)"/>
 				</svg>
 			</button>
-			<button class="removePlayerButton" onclick="removePlayer()">
+			<button class="removePlayerBtn" onclick="removePlayer()">
 				<p>Remove Player</p>
 				<svg class="b60aa51c-2c3e-4161-9950-a32939b38f35" data-name="PlusSign" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.9 3">
 					<rect class="e457aa97-ba7b-42cd-b90c-7f0e2c0d7811" width="15.9" height="3" rx="0.3"/>
 				</svg>
 			</button>
-			<button class="openLibButton" onclick="openLib()">
+			<button class="openLibBtn" onclick="openPanel('libraryBox')">
 				<p>Open Library</p>
 				<svg class="b26015b7-2e33-4703-831c-2a76e765856f" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450.1 322.8" >
 					<path class="ec6255a0-8bb8-4953-9675-7300ccf5f92b" d="M466,114.81h-29.7v-10.1A8.6,8.6,0,0,0,430,96a242.75,242.75,0,0,0-62.9-8c-34.9,0-82.4,7.9-117.6,43.6-34.9-36.1-82.8-43.6-117.6-43.6A242.75,242.75,0,0,0,69,96a8.83,8.83,0,0,0-6.3,8.7v10H33.41a8.71,8.71,0,0,0-8.7,8.7V402a8.71,8.71,0,0,0,8.7,8.7,9.16,9.16,0,0,0,4.3-1.1c.9-.4,88.1-48.1,209.9-17.4h2.1a7.39,7.39,0,0,0,2.1,0c122.1-31,209.3,16.7,209.9,17.4a8.48,8.48,0,0,0,8.7,0,8.83,8.83,0,0,0,4.4-7.5V123.61A8.88,8.88,0,0,0,466,114.81ZM42.11,388.21V132.31h20.8v218.8a8.64,8.64,0,0,0,8.6,8.8,6.6,6.6,0,0,0,1.4-.1,382.65,382.65,0,0,1,54.5-4.4,226.86,226.86,0,0,1,74.5,11.3A320,320,0,0,0,42.11,388.21Zm85.4-50.2a377.59,377.59,0,0,0-47.5,3.1V111.61a243.12,243.12,0,0,1,51.7-5.8c32.6,0,77.6,7.5,108.9,42.7l.3,217.3C222.81,354,187.41,338,127.51,338Zm130.9-189.4c31.2-34.9,76.2-42.7,108.9-42.7a243.12,243.12,0,0,1,51.7,5.8v229.5a372.86,372.86,0,0,0-47.2-3.1c-59.5,0-95,16-113.4,27.8Zm198.8,239.6A320.31,320.31,0,0,0,297,366.71a228.64,228.64,0,0,1,74.8-11.3,373.87,373.87,0,0,1,54.9,4.3,8.71,8.71,0,0,0,9.9-7.3,6.6,6.6,0,0,0,.1-1.4V132.31h20.8Z" transform="translate(-24.71 -88.01)"/>
 				</svg>
 			</button>
-			<div class="presetButtonPanel">
-				<button class="savePresetButton">
+			<div class="presetBtnPanel">
+				<button class="openSavePresetBtn" onclick="openPanel('SavePresetContainer')">
 					<p>Save Preset</p>
 				</button>
-				<button class="loadPresetButton">
+				<button class="openLoadPresetBtn">
 					<p>Load Preset</p>
 				</button>
-				<button class="browsePresetsButton">
+				<button class="openBrowsePresetsBtn">
 					<p>Browse Presets</p>
 				</button></div>
 			</div>
@@ -66,7 +86,7 @@
 			</div>
 		</div>
 		<div class="GlobalMixer" style="grid-area: GlobalMixer">
-			<button class="crossFadeButton" onclick="crossFade()">
+			<button class="crossFadeBtn" onclick="crossFade()">
 				<p>Crossfade</p>
 				<svg class="f5cec51e-11c9-41fa-9c3b-292fd05bacff" id="f5cec51e-11c9-41fa-9c3b-292fd05bacff" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427 313.72">
 					<path class="f06c2fea-1780-43b6-8bd0-cf3406385336" d="M420,365.5H354.25a15,15,0,0,1-10.61-4.39L136,153.5H42.25a15,15,0,0,1,0-30h100a15,15,0,0,1,10.61,4.39L360.46,335.5H420a15,15,0,1,1,0,30Z" transform="translate(-27.25 -87.64)"/>
@@ -88,17 +108,17 @@
 			<div id="sliderContainer" class="sliderContainer" onclick="toggleSelection()">
 				<input id="VolumeSlider" class="VolumeSlider" type="range" min="0" max="100" value="50" oninput="updateVolume()" onchange="updateVolume()" orient="vertical">
 			</div>
-			<button id="updateButton" class="updateButton" onclick="updateVideo()"><span class="btncontent">Update</span></button>
+			<button id="updateBtn" class="updateBtn" onclick="updateVideo()"><span class="btncontent">Update</span></button>
 			<div class="VideoIDContainer" style="grid-area: vID">
 				<input id="VideoIDInput" class="VideoIDInput" type="text" style="width: auto" placesholder="Video ID ..."></input>
 			</div>
-			<button id="deleteButton" class="deleteButton" onclick="deletePlayer()">
+			<button id="deleteBtn" class="deleteBtn" onclick="deletePlayer()">
 				<span class="btncontent">Delete</span>
 			</button>
-			<button id="fadeInButton" class="fadeInButton" onclick="fadeIn()">
+			<button id="fadeInBtn" class="fadeInBtn" onclick="fadeIn()">
 				<span class="btncontent">Fade In</span>
 			</button>
-			<button id="fadeOutButton" class="fadeOutButton" onclick="fadeOut()">
+			<button id="fadeOutBtn" class="fadeOutBtn" onclick="fadeOut()">
 				<span class="btncontent">Fade Out</span>
 			</button>
 		</div>

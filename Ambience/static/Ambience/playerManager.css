@@ -9,7 +9,7 @@ off-white: #E6EBE0
 html, body {
 	width: auto;
 	height: auto;
-	font-family: bourbon, serif;
+	font-family: Arial Black, sans-serif;
 	text-align: center;		
 	background-color: #12141A;
 	}
@@ -17,10 +17,11 @@ html, body {
 h1 {
 	letter-spacing: 10px;
 	font-size: 45px;
+	font-family: bourbon, serif;
 	float: left;
 	margin-right: 50px;
 	margin-left: 20px;
-	color: white;
+	color: #E6EBE0;
 	}
 
 /* LAYOUT */
@@ -115,11 +116,11 @@ h1 {
 button {
 	width: fit-content;
 	height: auto;
-	font-family: Arial Black, sans-serif;
+	
 	font-weight: 400;
 	font-style: normal;
 	letter-spacing: 1px;
-
+	font-family: Arial Black, sans-serif;
 	color: #E6EBE0;
 	margin: auto;
 	padding: 3px;
@@ -140,7 +141,7 @@ button:hover {
 	margin: auto;
 }
 
-.presetButtonPanel {
+.presetBtnPanel {
 	grid-area: s6;
 
 	display: grid;
@@ -148,11 +149,11 @@ button:hover {
 	grid-template-rows: 33% 33% 33%;
 }
 
-.savePresetButton, .loadPresetButton, .browsePresetsButton {
+.savePresetBtn, .loadPresetBtn, .browsePresetsBtn {
 	justify-self: start;
 }
 
-.addPlayerButton, .removePlayerButton, .openLibButton {
+.addPlayerBtn, .removePlayerBtn, .openLibBtn {
 	grid-area: s3;
 	float: left;
 
@@ -161,15 +162,15 @@ button:hover {
 	grid-template-rows: 50px 100px;
 }
 
-.removePlayerButton {
+.removePlayerBtn {
 	grid-area: s4;
 }
 
-.openLibButton {
+.openLibBtn {
 	grid-area: s5;
 }
 
-.crossFadeButon {
+.crossFadeBtn {
 	grid-area: GlobalMixer;
 }
 
@@ -197,7 +198,7 @@ button:hover {
 	fill:#3b8ad4;
 }
 
-.libraryBox {
+.libraryBox, .SavePresetContainer {
 	transition: .5s;
 	opacity: 0;
 	position: absolute;
@@ -211,7 +212,7 @@ button:hover {
 
 	background-color: rgba(18, 20, 26, .3);
 }
-.closeLibBtn {
+.closeBtn {
 	position: absolute;
 	z-index: 1001;
 
@@ -221,44 +222,70 @@ button:hover {
 
 	top: 8%;
 	right: 8%;
-	background-color: #E6EBE0;
-	border-radius: 3px;
-}
-.closeBtn {
 	fill: #E6EBE0;
-}
-.closeBtn:hover {
-	fill: transparent;
+	border-radius: 3px;
 }
 
 .lib {
 	border-radius: 20px;
 }
 
-.crossFadeButton {
+.SavePresetForm {
+	font-size: 10px;
+	letter-spacing: 5px;
+	color: #E6EBE0;
+	position: absolute;
+	z-index: 1001;
+
+	width: 1500px;
+	height: 800px;
+
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 10% 20% 50% 20%;
+	grid-template-areas: 
+		"head"
+		"title"
+		"viewBox"
+		"submit";
+
+	background-color: #181A22;
+	border-radius: 20px;
+}
+
+.SavePresetForm > div > label {
+
+	letter-spacing: 5px;
+	font-size: 45px;
+	font-family: bourbon, serif;
+
+	margin-right: 70%;
+}
+
+.crossFadeBtn {
 	grid-area: misc;
 }
 
 /* LOCAL MIXER BUTTONS */
 
-.updateButton, .fadeInButton, .fadeOutButton, .deleteButton {
+.updateBtn, .fadeInBtn, .fadeOutBtn, .deleteBtn {
 	border: 3px;
 	align-content: center;
 }
 
-.updateButton {
+.updateBtn {
 	grid-area: update;
 }
 
-.fadeInButton {
+.fadeInBtn {
 	grid-area: fIn;
 }
 
-.fadeOutButton {
+.fadeOutBtn {
 	grid-area: fOut;
 }
 
-.deleteButton {
+.deleteBtn {
 	grid-area: del;
 }
 
@@ -308,3 +335,8 @@ button:hover {
 /* GLOBALMIXER */
 
 /* MISCFEATURES */
+
+hr.solid {
+	width: 95%;
+	border-top: 3px solid #1c1e27;
+}
