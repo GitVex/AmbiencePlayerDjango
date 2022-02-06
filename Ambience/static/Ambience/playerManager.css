@@ -113,7 +113,7 @@ h1 {
 
 /* BUTTONS  */
 
-button {
+button, input[type="submit"] {
 	width: fit-content;
 	height: auto;
 	
@@ -132,7 +132,7 @@ button {
 
 	transition: 0.3s;
 }
-button:hover {
+button:hover, input[type="submit"]:hover {
 	transform: scale(0.95);
 	background-color: #08090C;
 }
@@ -230,7 +230,7 @@ button:hover {
 	border-radius: 20px;
 }
 
-.SavePresetForm {
+.SavePresetWindow {
 	font-size: 10px;
 	letter-spacing: 5px;
 	color: #E6EBE0;
@@ -242,18 +242,16 @@ button:hover {
 
 	display: grid;
 	grid-template-columns: 100%;
-	grid-template-rows: 10% 20% 50% 20%;
+	grid-template-rows: 10% 90%;
 	grid-template-areas: 
 		"head"
-		"title"
-		"viewBox"
-		"submit";
+		"form";
 
 	background-color: #181A22;
 	border-radius: 20px;
 }
 
-.SavePresetForm > div > label {
+.SavePresetWindow > div > label {
 
 	letter-spacing: 5px;
 	font-size: 45px;
@@ -264,6 +262,16 @@ button:hover {
 
 .crossFadeBtn {
 	grid-area: misc;
+}
+
+.savePresetForm {
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 10% 80% 10%;
+	grid-template-areas: 
+		"title"
+		"viewBox"
+		"submit";
 }
 
 /* LOCAL MIXER BUTTONS */
@@ -297,7 +305,7 @@ button:hover {
 	width: auto;
 }
 
-.VideoIDInput {
+input[type="text"] {
 	background: #08090C;
 	border: transparent;
 	color: #E6EBE0;
@@ -306,9 +314,11 @@ button:hover {
 	transition: 0.3s;
 }
 
-.VideoIDInput:hover, .VideoIDInput:focus {
+input[type="text"]:hover:not(#presetTitle), input[type="text"]:focus:not(#presetTitle) {
 	transform: scale(1.2);
 }
+
+
 
 
 .sliderContainer {
@@ -332,11 +342,23 @@ button:hover {
 	margin: auto;
 }
 
+.titleLabel {
+	font-size: 20px;
+	letter-spacing: 2px;
+	margin-right: 80%;
+}
+
+.titleField {
+	margin-right: 58%;
+	transform: translate(0, 10px);
+	width: 500px;
+}
+
 /* GLOBALMIXER */
 
 /* MISCFEATURES */
 
 hr.solid {
 	width: 95%;
-	border-top: 3px solid #1c1e27;
+	border: 2px solid #2a2e3b;
 }
