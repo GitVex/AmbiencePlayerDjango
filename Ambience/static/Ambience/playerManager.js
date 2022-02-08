@@ -1,6 +1,13 @@
 var selectedMixer = []
-var activePlayers = []
 
+const getMethods = (obj) => {
+	let properties = new Set()
+	let currentObj = obj
+	do {
+	  Object.getOwnPropertyNames(currentObj).map(item => properties.add(item))
+	} while ((currentObj = Object.getPrototypeOf(currentObj)))
+	return [...properties.keys()].filter(item => typeof obj[item] === 'function')
+  }
 
 /* BUTTON FUNCTIONS */
 
@@ -166,23 +173,26 @@ function loadPlayersForPreset() {
 
 	for(var i = 0; i < PlayerHolder.length; i++) {
 
-		if(!PlayerHolder[i].isAvailable && !activePlayers.includes(PlayerHolder[i])) {
+		if(!PlayerHolder[i].isAvailable) {
 
-			activePlayers.push(PlayerHolder[i]);
+			var url = PlayerHolder[i].div.getVideoUrl();
+			var videoTitle = "";
+			$.ajax({
+				url: 'https://noembed.com/embed' + '?url=' + url,
+				dataType : 'json', 
+				async: false,
+				success: (data) => {
+					videoTitle = data.title;
+				}
+				})
+			var videoID = url.match(/(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=|\/user\/\S+|\/ytscreeningroom\?v=))([\w\-]{10,12})\b/)[1];
+			html_to_insert = "<tr><td>" + videoTitle + "</td><td>" + videoID + "</td></tr>"
+			document.getElementById('viewVideosFieldTable').insertAdjacentHTML('beforeend', html_to_insert)
 		}
 	}
 
 	for(var i = 0; i < activePlayers.length; i++) {
 
-		var url = activePlayers[i].div.getVideoUrl();
-		var videoTitle;
-		fetch(`https://noembed.com/embed?dataType=json&url=${url}`)
-			.then(res => res.json())
-			.then(data => videoTitle = data.title)
-
-		var videoID = url.match(/(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=|\/user\/\S+|\/ytscreeningroom\?v=))([\w\-]{10,12})\b/)[1];
-		html_to_insert = "<tr><td>" + videoTitle + "</td><td>" + videoID + "</td></tr>"
-		document.getElementById('viewVideosFieldTable').insertAdjacentHTML('beforeend', html_to_insert)
 		
 	}
 }
