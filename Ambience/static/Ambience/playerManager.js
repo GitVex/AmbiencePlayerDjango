@@ -1,4 +1,6 @@
 var selectedMixer = []
+var activePlayers = []
+
 
 /* BUTTON FUNCTIONS */
 
@@ -130,6 +132,61 @@ function toggleSelection() {
 	}
 }
 
+function updateVideo() {
+
+	let currentMixer = getCurrentMixer(event.target);
+	let videoIdContainer = currentMixer[0].children[2].firstElementChild;
+	let videoID;
+	if (videoIdContainer.value.includes("youtube")) {
+		videoID = videoIdContainer.value.match(/(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=|\/user\/\S+|\/ytscreeningroom\?v=))([\w\-]{10,12})\b/)[1];
+	} else {
+		videoID = videoIdContainer.value;
+	}
+		 
+	try {
+		PlayerHolder[currentMixer[1]].div.loadVideoById(videoID);
+	} catch (e) {
+		alert(e);
+	}
+}
+
+function updateVolume() {
+
+	let currentMixer = getCurrentMixer(event.target);
+	let volSlider = currentMixer[0].children[0].firstElementChild;
+
+	try {
+		PlayerHolder[currentMixer[1]].div.setVolume(parseInt(volSlider.value));
+	} catch (e) {
+		alert(e);
+	}
+}
+
+function loadPlayersForPreset() {
+
+	for(var i = 0; i < PlayerHolder.length; i++) {
+
+		if(!PlayerHolder[i].isAvailable && !activePlayers.includes(PlayerHolder[i])) {
+
+			activePlayers.push(PlayerHolder[i]);
+		}
+	}
+
+	for(var i = 0; i < activePlayers.length; i++) {
+
+		var url = activePlayers[i].div.getVideoUrl();
+		var videoTitle;
+		fetch(`https://noembed.com/embed?dataType=json&url=${url}`)
+			.then(res => res.json())
+			.then(data => videoTitle = data.title)
+
+		var videoID = url.match(/(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=|\/user\/\S+|\/ytscreeningroom\?v=))([\w\-]{10,12})\b/)[1];
+		html_to_insert = "<tr><td>" + videoTitle + "</td><td>" + videoID + "</td></tr>"
+		document.getElementById('viewVideosFieldTable').insertAdjacentHTML('beforeend', html_to_insert)
+		
+	}
+}
+
 /* HELPER FUNCTIONS */
 
 function getPlayerCount() {
@@ -192,36 +249,6 @@ function getCurrentMixer(eventOrigin) {
 
 	let currentMixerId = currentMixer.getAttribute('id').charAt(currentMixer.getAttribute('id').length - 1);
 	return [currentMixer, currentMixerId];
-}
-
-function updateVideo() {
-
-	let currentMixer = getCurrentMixer(event.target);
-	let videoIdContainer = currentMixer[0].children[2].firstElementChild;
-	let videoID;
-	if (videoIdContainer.value.includes("youtube")) {
-		videoID = videoIdContainer.value.match(/(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=|\/user\/\S+|\/ytscreeningroom\?v=))([\w\-]{10,12})\b/)[1];
-	} else {
-		videoID = videoIdContainer.value;
-	}
-		 
-	try {
-		PlayerHolder[currentMixer[1]].div.loadVideoById(videoID);
-	} catch (e) {
-		alert(e);
-	}
-}
-
-function updateVolume() {
-
-	let currentMixer = getCurrentMixer(event.target);
-	let volSlider = currentMixer[0].children[0].firstElementChild;
-
-	try {
-		PlayerHolder[currentMixer[1]].div.setVolume(parseInt(volSlider.value));
-	} catch (e) {
-		alert(e);
-	}
 }
 
 /*FADE FUNCTIONS*/

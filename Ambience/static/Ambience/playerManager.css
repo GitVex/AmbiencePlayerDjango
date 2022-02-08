@@ -318,9 +318,6 @@ input[type="text"]:hover:not(#presetTitle), input[type="text"]:focus:not(#preset
 	transform: scale(1.2);
 }
 
-
-
-
 .sliderContainer {
 	display: flex;
 	justify-content: center;
@@ -349,9 +346,36 @@ input[type="text"]:hover:not(#presetTitle), input[type="text"]:focus:not(#preset
 }
 
 .titleField {
-	margin-right: 58%;
-	transform: translate(0, 10px);
+	margin-left: 17%;
 	width: 500px;
+	max-height: 25px;
+}
+
+.viewVideosField {
+	display: block;
+	border: 3px solid #2a2e3b;
+	border-radius: 7px;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.viewVideosFieldTable {
+	font-size: 15px;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td, th {
+	border-right: 3px solid #2a2e3b;
+	text-align: left;
+	padding: 8px;
+}
+td {
+	border-bottom: 3px solid #2a2e3b;
+}
+
+tr:nth-child(even) {
+	background: #2a2e3b;
 }
 
 /* GLOBALMIXER */
