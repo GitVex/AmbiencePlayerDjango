@@ -365,13 +365,15 @@ input[type="text"]:hover:not(#presetTitle), input[type="text"]:focus:not(#preset
 	width: 100%;
 }
 
-td, th {
+tr, td, th {
 	border-right: 3px solid #2a2e3b;
 	text-align: left;
 	padding: 8px;
+	letter-spacing: normal;
 }
-td {
+th {
 	border-bottom: 3px solid #2a2e3b;
+	border-right: none;
 }
 
 tr:nth-child(even) {
