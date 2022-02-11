@@ -314,7 +314,7 @@ input[type="text"] {
 	transition: 0.3s;
 }
 
-input[type="text"]:hover:not(#presetTitle), input[type="text"]:focus:not(#presetTitle) {
+input[type="text"]:hover:not(#id_Title), input[type="text"]:focus:not(#id_Title) {
 	transform: scale(1.2);
 }
 
@@ -339,16 +339,23 @@ input[type="text"]:hover:not(#presetTitle), input[type="text"]:focus:not(#preset
 	margin: auto;
 }
 
-.titleLabel {
+.savePresetForm > p {
+	grid-area: title;
+	align-content: left;
+	text-align: left;
 	font-size: 20px;
-	letter-spacing: 2px;
-	margin-right: 80%;
+	margin-left: 10%;
+
 }
 
-.titleField {
-	margin-left: 17%;
+.savePresetForm > p > label {
+	letter-spacing: normal;
+}
+
+.savePresetForm > p > input[type="text"] {
+	height: 28px;
 	width: 500px;
-	max-height: 25px;
+	transform: translate(0, -2px);
 }
 
 .viewVideosField {
@@ -378,6 +385,9 @@ th {
 
 tr:nth-child(even) {
 	background: #2a2e3b;
+}
+th:nth-child(2) {
+	border-right: none;
 }
 
 /* GLOBALMIXER */

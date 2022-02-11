@@ -1,0 +1,7 @@
+https://stackoverflow.com/questions/2770810/multiple-models-in-a-single-django-modelform
+
+https://stackoverflow.com/questions/569468/django-multiple-models-in-one-template-using-forms
+
+https://stackoverflow.com/questions/133925/javascript-post-request-like-a-form-submit
+
+https://stackoverflow.com/questions/10863074/sending-post-data-with-jquery-on-form-submission

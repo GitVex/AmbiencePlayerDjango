@@ -3,5 +3,5 @@ from . import views
 
 #URLConf
 urlpatterns = [
-    path('', views.renderedHTML)
+    path('', views.AmbienceView.as_view(), name="Ambience")
 ]

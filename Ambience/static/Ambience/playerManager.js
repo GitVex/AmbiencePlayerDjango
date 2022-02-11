@@ -1,4 +1,6 @@
 var selectedMixer = []
+var IDregex = new RegExp(/(?:youtube(?:-nocookie)?\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)
+loadedVideos = {}
 
 const getMethods = (obj) => {
 	let properties = new Set()
@@ -145,7 +147,10 @@ function updateVideo() {
 	let videoIdContainer = currentMixer[0].children[2].firstElementChild;
 	let videoID;
 	if (videoIdContainer.value.includes("youtube")) {
-		videoID = videoIdContainer.value.match(/(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=|\/user\/\S+|\/ytscreeningroom\?v=))([\w\-]{10,12})\b/)[1];
+		for(var i = 0; i < videoIdContainer.value.match(IDregex).length; i++) {
+			console.log(i + " | " + videoIdContainer.value.match(IDregex)[i])
+		}
+		videoID = videoIdContainer.value.match(IDregex)[1];
 	} else {
 		videoID = videoIdContainer.value;
 	}
@@ -171,29 +176,29 @@ function updateVolume() {
 
 function loadPlayersForPreset() {
 
+	document.getElementById('viewVideosFieldTable').innerHTML = '<tr><th>Video Tile</th><th>Video ID</th></tr>'
+
 	for(var i = 0; i < PlayerHolder.length; i++) {
 
 		if(!PlayerHolder[i].isAvailable) {
 
 			var url = PlayerHolder[i].div.getVideoUrl();
+			var videoID = url.match(IDregex)[1];
 			var videoTitle = "";
 			$.ajax({
-				url: 'https://noembed.com/embed' + '?url=' + url,
+				url: 'https://noembed.com/embed?url=https://youtu.be/' + videoID,
 				dataType : 'json', 
 				async: false,
 				success: (data) => {
 					videoTitle = data.title;
 				}
 				})
-			var videoID = url.match(/(?:youtu\.be\/|youtube\.com(?:\/embed\/|\/v\/|\/watch\?v=|\/user\/\S+|\/ytscreeningroom\?v=))([\w\-]{10,12})\b/)[1];
-			html_to_insert = "<tr><td>" + videoTitle + "</td><td>" + videoID + "</td></tr>"
-			document.getElementById('viewVideosFieldTable').insertAdjacentHTML('beforeend', html_to_insert)
+			html_to_insert = "<tr><td>" + videoTitle + "</td><td>" + videoID + "</td></tr>";
+			document.getElementById('viewVideosFieldTable').insertAdjacentHTML('beforeend', html_to_insert);
+
+			loadedVideos[i] = [videoTitle, videoID];
+			
 		}
-	}
-
-	for(var i = 0; i < activePlayers.length; i++) {
-
-		
 	}
 }
 
