@@ -314,7 +314,7 @@ input[type="text"] {
 	transition: 0.3s;
 }
 
-input[type="text"]:hover:not(#id_Title), input[type="text"]:focus:not(#id_Title) {
+input[type="text"]:hover:not(#id_title), input[type="text"]:focus:not(#id_title) {
 	transform: scale(1.2);
 }
 

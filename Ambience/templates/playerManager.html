@@ -31,7 +31,7 @@
 				<label id="savePresetHead" style="grid-area: head">Create New Preset</label>
 				<hr class="solid"/>
 			</div>
-			<form id="savePresetForm" class="savePresetForm" name="savePresetForm" method="postSavePreset">
+			<form id="savePresetForm" class="savePresetForm" name="savePresetForm" method="post">
 				{% csrf_token %}
 				{{ form.as_p }}
 				<div class="viewVideosField" style="grid-area: viewBox">
@@ -42,6 +42,7 @@
 						</tr>
 					</table>
 				</div>
+				<input id="presetDataField" type="hidden" name="presetData" value="">
 				<input class="submitBtn" type="submit" value="Create" style="grid-area: submit">
 			</form>
 		</div>
