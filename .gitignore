@@ -3,6 +3,7 @@ lines (124 sloc) 2.7 KB
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyc
 
 # C extensions
 *.so
