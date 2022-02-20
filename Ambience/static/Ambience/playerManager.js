@@ -1,6 +1,6 @@
 var selectedMixer = []
 var IDregex = new RegExp(/(?:youtube(?:-nocookie)?\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/)
-loadedVideos = {}
+var loadedVideos = []
 
 const getMethods = (obj) => {
 	let properties = new Set()
@@ -9,7 +9,7 @@ const getMethods = (obj) => {
 	  Object.getOwnPropertyNames(currentObj).map(item => properties.add(item))
 	} while ((currentObj = Object.getPrototypeOf(currentObj)))
 	return [...properties.keys()].filter(item => typeof obj[item] === 'function')
-  }
+}
 
 /* BUTTON FUNCTIONS */
 
@@ -148,7 +148,6 @@ function updateVideo() {
 	let videoID;
 	if (videoIdContainer.value.includes("youtube")) {
 		for(var i = 0; i < videoIdContainer.value.match(IDregex).length; i++) {
-			console.log(i + " | " + videoIdContainer.value.match(IDregex)[i])
 		}
 		videoID = videoIdContainer.value.match(IDregex)[1];
 	} else {
@@ -187,7 +186,7 @@ function loadPlayersForPreset() {
 			var videoTitle = "";
 			$.ajax({
 				url: 'https://noembed.com/embed?url=https://youtu.be/' + videoID,
-				dataType : 'json', 
+				dataType : 'json',
 				async: false,
 				success: (data) => {
 					videoTitle = data.title;
@@ -196,10 +195,23 @@ function loadPlayersForPreset() {
 			html_to_insert = "<tr><td>" + videoTitle + "</td><td>" + videoID + "</td></tr>";
 			document.getElementById('viewVideosFieldTable').insertAdjacentHTML('beforeend', html_to_insert);
 
-			loadedVideos[i] = [videoTitle, videoID];
-			
+			let playerData = []
+			let newPlayerData = {
+				ID: videoID, 
+				title: videoTitle
+			}
+			playerData.push(newPlayerData)
+
+			let newLoadedVideo = {
+				playerID: i.toString(),
+				playerData: playerData
+			}
+			if(!loadedVideos.includes(newLoadedVideo)) {
+				loadedVideos.push(newLoadedVideo)
+			}
 		}
 	}
+	document.getElementById('presetDataField').value = JSON.stringify(loadedVideos)
 }
 
 /* HELPER FUNCTIONS */

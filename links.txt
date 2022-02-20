@@ -5,3 +5,5 @@ https://stackoverflow.com/questions/569468/django-multiple-models-in-one-templat
 https://stackoverflow.com/questions/133925/javascript-post-request-like-a-form-submit
 
 https://stackoverflow.com/questions/10863074/sending-post-data-with-jquery-on-form-submission
+
+https://stackoverflow.com/questions/1395807/proper-way-to-handle-multiple-forms-on-one-page-in-django
