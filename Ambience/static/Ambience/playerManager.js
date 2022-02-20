@@ -11,6 +11,13 @@ const getMethods = (obj) => {
 	return [...properties.keys()].filter(item => typeof obj[item] === 'function')
 }
 
+/* LISTENERS */
+
+$("#id_title").bind("change paste keyup", function() {
+	console.log($(this).val())
+});
+
+
 /* BUTTON FUNCTIONS */
 
 function addPlayer() {

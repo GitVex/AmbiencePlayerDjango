@@ -54,3 +54,4 @@ class AmbienceView(TemplateView):
                 saveData(presetData)
 
         return render(request, self.template_name, context={'form': formA})
+

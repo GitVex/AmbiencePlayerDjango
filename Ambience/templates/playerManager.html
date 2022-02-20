@@ -53,6 +53,21 @@
 		</button>
 	</div>
 
+	<div class="BrowsePresetContainer" id="BrowsePresetContainer" style="display: none">
+		<div class="BrowsePresetWindow">
+			<div class="SavePresetContainerHeadContainer" style="grid-area: head;">
+				<label id="savePresetHead" style="grid-area: head">Browse Presets</label>
+				<hr class="solid"/>
+			</div>
+		</div>
+		
+		<button id="closeSavePresetBtn" class="closeBtn" onclick="closePanel('BrowsePresetContainer')">
+			<svg class="cloesBtn" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+				<path class="cloesBtn" d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/>
+			</svg>
+		</button>
+	</div>
+
 	<div class="AmbiencePlayerBox">
 		<div class="HeaderBox" id="HeaderBox" style="grid-area: HeaderBox">
 			<h1>Ambience Player</h1>
@@ -82,7 +97,7 @@
 				<button class="openLoadPresetBtn">
 					<p>Load Preset</p>
 				</button>
-				<button class="openBrowsePresetsBtn">
+				<button class="openBrowsePresetsBtn" onclick="openPanel('BrowsePresetContainer')">
 					<p>Browse Presets</p>
 				</button></div>
 			</div>
