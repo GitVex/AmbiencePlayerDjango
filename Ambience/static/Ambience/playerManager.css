@@ -386,7 +386,7 @@ th {
 tr:nth-child(even) {
 	background: #2a2e3b;
 }
-th:nth-child(2) {
+td:nth-child(even) {
 	border-right: none;
 }
 
